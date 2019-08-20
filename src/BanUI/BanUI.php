@@ -15,14 +15,14 @@ use jojoe77777\FormAPI;
 class Main extends PluginBase implements Listener {	
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getLogger()->info(TextFormat::GREEN . "BanUI by MegaGastPvP.");
+        $this->getLogger()->info(TextFormat::GREEN . "FactionsUI by Bronzehail.");
     }
     public function onDisable() {
-        $this->getLogger()->info(TextFormat::RED . "BanUI disabled.");
+        $this->getLogger()->info(TextFormat::RED . "faction ui disabled.");
     }	
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {		
 		switch($cmd->getName()){		
-			case "banui":
+			case "createui":
 				if($sender instanceof Player) {	
 					$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");				
 					if($api === null || $api->isDisabled()){					
@@ -33,13 +33,13 @@ class Main extends PluginBase implements Listener {
 					}
 						switch($result){							
 							case 0:																
-                                                               $this->getServer()->dispatchCommand($sender, trim(implode(" ", ["ban ".$result.""])));														
+                                                               $this->getServer()->dispatchCommand($sender, trim(implode(" ", ["f create ".$result.""])));														
     							       break;																						
 						}					
 					});					
-					$form->setTitle("Ban Screen");
-					$form->setContent("Please choose who your banning.");
-					$form->addInput(TextFormat::BOLD . "Who you are banning");	
+					$form->setTitle("§l§1Faction Creation");
+					$form->setContent("§awrite the name of the faction below \n example: Team 1.");
+					$form->addInput(TextFormat::BOLD . "Team 10");	
 					$form->sendToPlayer($sender);										
 				}
 				else{
